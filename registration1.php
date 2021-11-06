@@ -32,7 +32,7 @@ session_start();
 
          <!-- form code -->
          <!-- Will need to change action to go to reg page when name changes. -->
-        <form method="post" action="php_test2.php">
+        <form method="post" action="registration2.php">
             <div id="company-contact-info">
 			<h1 class="page-title">User Registration Page</h1>
 			<h5 class="page-info">
