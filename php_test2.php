@@ -35,7 +35,7 @@ $_SESSION['pass'] = $_POST['userPassword'];
         </nav>
     <div class="registration-info">
     <!-- Will need to change action to go to reg page when name changes. -->
-        <form method="post" action="registration3.php">
+        <form method="post" action="php_test3.php">
             <div id="company-contact-info">
 			<h1 class="page-title">User Registration Page</h1>
 			<h5 class="page-info">
@@ -46,7 +46,7 @@ $_SESSION['pass'] = $_POST['userPassword'];
             <div class="fields-container">
                 <label class="captcha">Please select one of the following options to be your "topic" for future logging in: </label>
                <pre> <select name="password2" id="password2" placeholder="Topics">
-                    <option value="airplane">airplane</option>
+                    <option value="bear">Bear</option>
                     <option value="bus">Bus</option>
                     <option value="flower">Flower</option>
                     <option value="cat">Cat</option>
