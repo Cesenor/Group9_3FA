@@ -60,6 +60,12 @@ session_start();
     $userID = $getID['userName'];
     echo $userID;
 
+
+    $getPass = mysqli_fetch_assoc(mysqli_query($link, "SELECT passWord FROM group9_db WHERE id = 1"));
+    $userPass = $getPass['passWord'];
+    echo $userPass;
+
+
     //$password = $_SESSION['pass'];
 
     //$pass_db = $link->query($sql);
