@@ -56,12 +56,23 @@ session_start();
       //  echo $row['passWord']."<br>";
     //}
 
-    $getID = mysqli_fetch_assoc(mysqli_query($link, "SELECT userName FROM group9_db WHERE id = 1"));
-    $userID = $getID['userName'];
-    echo $userID;
+    //$getID = mysqli_fetch_assoc(mysqli_query($link, "SELECT userName FROM group9_db WHERE id = 1"));
+    $getID = mysqli_fetch_assoc(mysqli_query($link, "SELECT userName FROM group9_db WHERE userName = '$first_name'"));
+    //$userID = $getID['userName'];
+
+    if(isset($getID)){
+        $userID = $getID['userName'];
+        echo $userID;
+        // it exists so continue to verify. 
+
+    } else {
+        echo "Username not stored within database.";
+    }
 
 
-    $getPass = mysqli_fetch_assoc(mysqli_query($link, "SELECT passWord FROM group9_db WHERE id = 1"));
+
+    //$getPass = mysqli_fetch_assoc(mysqli_query($link, "SELECT passWord FROM group9_db WHERE id = 1"));
+    $getPass = mysqli_fetch_assoc(mysqli_query($link, "SELECT passWord FROM group9_db WHERE userName = '$first_name'"));
     $userPass = $getPass['passWord'];
     echo $userPass;
 
