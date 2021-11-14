@@ -42,20 +42,6 @@ session_start();
     $password = $_SESSION['pass'];
 
 
-    //get_user($first_name, $password)
-
-    
-    /* Look for the username in the database. */
-    //$query = 'SELECT passWord FROM group9_db WHERE (account_name = :name)';
-    //$sql = "SELECT passWord FROM group9_db WHERE (userName = "Cesenor")";
-    //$sql = "SELECT passWord FROM group9_db WHERE userName = 'senorce3326@uwec.edu'";
-    //$sql = "SELECT * FROM group9_db W";
-    
-
-    //while ($row = $sql->fetch_assoc()) {
-      //  echo $row['passWord']."<br>";
-    //}
-
     //$getID = mysqli_fetch_assoc(mysqli_query($link, "SELECT userName FROM group9_db WHERE id = 1"));
     $getID = mysqli_fetch_assoc(mysqli_query($link, "SELECT userName FROM group9_db WHERE userName = '$first_name'"));
     //$userID = $getID['userName'];
@@ -64,6 +50,19 @@ session_start();
         $userID = $getID['userName'];
         echo $userID;
         // it exists so continue to verify. 
+        $getPass = mysqli_fetch_assoc(mysqli_query($link, "SELECT passWord FROM group9_db WHERE userName = '$first_name'"));
+        $userPass = $getPass['passWord'];
+        echo $userPass;
+
+        //verify password.
+        if(password_verify($password,  $userPass)) {
+            // If the password inputs matched the hashed password in the database
+            // Do something, you know... log them in.
+            echo "true";
+        } else {
+            echo "Incorrect Password Attempt.";
+        }
+
 
     } else {
         echo "Username not stored within database.";
@@ -72,20 +71,20 @@ session_start();
 
 
     //$getPass = mysqli_fetch_assoc(mysqli_query($link, "SELECT passWord FROM group9_db WHERE id = 1"));
-    $getPass = mysqli_fetch_assoc(mysqli_query($link, "SELECT passWord FROM group9_db WHERE userName = '$first_name'"));
-    $userPass = $getPass['passWord'];
-    echo $userPass;
+    //$getPass = mysqli_fetch_assoc(mysqli_query($link, "SELECT passWord FROM group9_db WHERE userName = '$first_name'"));
+    //$userPass = $getPass['passWord'];
+    //echo $userPass;
 
 
     
 
-    if(password_verify($password,  $userPass)) {
+    //if(password_verify($password,  $userPass)) {
         // If the password inputs matched the hashed password in the database
         // Do something, you know... log them in.
-        echo "true";
-    } else {
-        echo "Incorrect Password Attempt.";
-    }
+        //echo "true";
+    ///} else {
+        //echo "Incorrect Password Attempt.";
+   // }
 
 
    
