@@ -72,7 +72,9 @@ session_start();
         // If the password inputs matched the hashed password in the database
         // Do something, you know... log them in.
         echo "true";
-    } 
+    } else {
+        echo "Incorrect Password Attempt.";
+    }
 
 
    
