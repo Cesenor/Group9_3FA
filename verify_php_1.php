@@ -66,20 +66,6 @@ session_start();
     echo $userPass;
 
 
-    //$password = $_SESSION['pass'];
-
-    //$pass_db = $link->query($sql);
-
-    //$result = mysqli_query($link, "$sql");
-    //echo mysqli_query($result, 0);
-    //echo $result;
-
-    //while ($row = $result->fetch_assoc()) {
-     //   echo $row['classtype']."<br>";
-    //}
-
-
-    //echo gettype($result);
     
 
     //if(password_verify($password,  $result)) {
