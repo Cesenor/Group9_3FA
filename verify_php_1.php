@@ -56,7 +56,7 @@ session_start();
 
     //$pass_db = $link->query($sql);
 
-    $result = mysqli_query($link, "$sql");
+    //$result = mysqli_query($link, "$sql");
     //echo mysqli_query($result, 0);
     //echo $result;
 
