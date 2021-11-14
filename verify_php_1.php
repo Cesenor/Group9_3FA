@@ -48,9 +48,17 @@ session_start();
     /* Look for the username in the database. */
     //$query = 'SELECT passWord FROM group9_db WHERE (account_name = :name)';
     //$sql = "SELECT passWord FROM group9_db WHERE (userName = "Cesenor")";
-    $sql = "SELECT passWord FROM group9_db WHERE (userName = 'Cesenor')";
+    //$sql = "SELECT passWord FROM group9_db WHERE userName = 'senorce3326@uwec.edu'";
+    //$sql = "SELECT * FROM group9_db W";
+    
 
+    //while ($row = $sql->fetch_assoc()) {
+      //  echo $row['passWord']."<br>";
+    //}
 
+    $getID = mysqli_fetch_assoc(mysqli_query($link, "SELECT userName FROM group9_db WHERE id = 1"));
+    $userID = $getID['userName'];
+    echo $userID;
 
     //$password = $_SESSION['pass'];
 
@@ -65,7 +73,7 @@ session_start();
     //}
 
 
-    echo gettype($result);
+    //echo gettype($result);
     
 
     //if(password_verify($password,  $result)) {
