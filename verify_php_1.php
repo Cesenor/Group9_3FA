@@ -75,8 +75,8 @@ session_start();
         } else {
             //echo "Incorrect Password Attempt.";
             echo '<script type="text/javascript">myFunction();</script>';
-            header( "refresh:5;url=Stage1_Verification.php" );
-            //header("'Refresh: 3: URL=http://localhost/Group9_3FA/Stage1_Verification.php'");
+            echo "Redirecting in 3 seconds.";
+            header( "refresh:3;url=Stage1_Verification.php" );
             exit();
 
     
