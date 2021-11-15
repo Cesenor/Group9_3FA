@@ -24,24 +24,6 @@ if ($result->num_rows > 0) {
 	$user_image_type = $result->fetch_assoc()['capcha_type'];
 }
 
-
-$correct_number = 0; //should be gotten form whatever thing cameron was talking about                                                                     todo
-//if there is a airplane var, then the form was previously submitted
-if (isset($_POST['airplane'])){
-	$pass = True;
-	foreach ($_POST as $category){
-		if ($category = $user_image_type){
-			if($_post[$category] != $correct_number){
-				$pass = False;
-			}
-		}else{
-			if($_post[$category] > 0){
-				$pass = False;
-			}
-		}
-	}
-}
-
 $image_groups = array(
 	"airplane" => -1,
 	"beach" => -1,
@@ -51,6 +33,26 @@ $image_groups = array(
 	"home" => -1,
 	"storage" => -1,
 	);
+
+$correct_number = 0; //should be gotten form whatever thing cameron was talking about                                                                     todo
+//if there is a airplane var, then the form was previously submitted
+if (isset($_POST['airplane'])){
+	$pass = True;
+	foreach ($_POST as $category){
+		if (in_array($category, $image_groups)){
+			if ($category = $user_image_type){
+				if($_post[$category] != $correct_number){
+					$pass = False;
+				}
+			}else{
+				if($_post[$category] > 0){
+					$pass = False;
+				}
+			}
+		}
+	}
+}
+
 
 $random_keys = array(
 	1 => array_rand($image_groups),
