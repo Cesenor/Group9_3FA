@@ -32,8 +32,8 @@ session_start();
     #$_SESSION['w'] = $_POST['test'];
     #echo $_SESSION['w'];
     #echo "<script>document.writeln(rgb_value);</script>";
-    echo $_COOKIE["gfg"];
-    $rgb = $_COOKIE["gfg"];
+    #echo $_COOKIE["gfg"];
+    #$rgb = $_COOKIE["gfg"];
 
 
 
@@ -42,6 +42,7 @@ session_start();
     $first_name = $_SESSION['name'];
     $password = $_SESSION['pass'];
     $type = $_SESSION['pass2'];
+    $rgb = $_COOKIE["gfg"];
 
 
     // Use password_hash() function to
