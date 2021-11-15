@@ -4,7 +4,10 @@ $db_username = "root";
 $db_password = "";
 
 // Create connection
-$conn = new mysqli($servername, $db_username, $db_password, "SE2");
+//$conn = new mysqli($servername, $db_username, $db_password, "SE2");
+$conn = new mysqli($servername, $db_username, $db_password, "3fa_db");
+
+
 
 // Check connection
 if ($conn->connect_error) {
