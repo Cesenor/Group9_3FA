@@ -2,6 +2,12 @@
 <html lang="en">
 <body>
 
+<script type="text/javascript">
+function myFunction() {
+  alert("Incorrect Password Attempt.");
+}
+</script>
+
 
 <?php
 // Start the session
@@ -67,9 +73,13 @@ session_start();
             header("Location: Stage3_Verification.php");
             exit();
         } else {
-            echo "Incorrect Password Attempt.";
-            //call(myFunction());
+            //echo "Incorrect Password Attempt.";
+            echo '<script type="text/javascript">myFunction();</script>';
+            //header("Location: Stage1_Verification.php");
+            //exit();
 
+    
+        
         }
 
 
