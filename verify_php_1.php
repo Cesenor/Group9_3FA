@@ -1,4 +1,7 @@
 
+<html lang="en">
+<body>
+
 
 <?php
 // Start the session
@@ -65,6 +68,8 @@ session_start();
             exit();
         } else {
             echo "Incorrect Password Attempt.";
+            //call(myFunction());
+
         }
 
 
@@ -77,3 +82,6 @@ session_start();
     mysqli_close($link);
 
 ?>
+
+</body>
+</html>
