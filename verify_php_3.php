@@ -63,7 +63,7 @@ session_start();
         // it exists so continue to verify. 
         $getRGB = mysqli_fetch_assoc(mysqli_query($link, "SELECT rgb FROM group9_db WHERE userName = '$first_name'"));
         $getRGB = $getRGB['rgb'];
-        echo $getRGB;
+        //echo $getRGB;
 
         //verify rgb.
         if($getRGB == $rgb) {
