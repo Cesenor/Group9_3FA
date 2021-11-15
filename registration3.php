@@ -52,13 +52,13 @@ $_SESSION['pass2'] = $_POST['password2'];
                 <div class="grid-container" id="selections">
                     <div class="grid-item1" onClick="onClickSquare(1)" id = "1">1</div>
                     <div class="grid-item2" onClick="onClickSquare(2)" id = "2">2</div>
-                    <div class="grid-item3" id = "3">3</div>  
-                    <div class="grid-item4" id = "4">4</div>
-                    <div class="grid-item5" id = "5">5</div>
-                    <div class="grid-item6" id = "6">6</div>  
-                    <div class="grid-item7" id = "7">7</div>
-                    <div class="grid-item8" id = "8">8</div>
-                    <div class="grid-item9" id = "9">9</div>
+                    <div class="grid-item3" onClick="onClickSquare(3)" id = "3">3</div>  
+                    <div class="grid-item4" onClick="onClickSquare(4)" id = "4">4</div>
+                    <div class="grid-item5" onClick="onClickSquare(5)" id = "5">5</div>
+                    <div class="grid-item6" onClick="onClickSquare(6)" id = "6">6</div>  
+                    <div class="grid-item7" onClick="onClickSquare(7)" id = "7">7</div>
+                    <div class="grid-item8" onClick="onClickSquare(8)" id = "8">8</div>
+                    <div class="grid-item9" onClick="onClickSquare(9)" id = "9">9</div>
                 </div>
 
                 <!-- script starts here -->
@@ -78,21 +78,6 @@ $_SESSION['pass2'] = $_POST['password2'];
                         }
 
                     };
-
-
-                    
-                    /////////
-                    function showIt(element) {
-                        var parent = element.parentNode;
-                        alert(parent.id);
-                        var content = parent.querySelector("div");
-                        alert(content.id);
-                    }
-                    //////////
-
-
-
-
 
 
 
