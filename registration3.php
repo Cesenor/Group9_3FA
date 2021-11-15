@@ -50,8 +50,8 @@ $_SESSION['pass2'] = $_POST['password2'];
                 <label class="rgb"> more colors in any pattern.</label>
                 
                 <div class="grid-container" id="selections">
-                    <div class="grid-item1" onClick="onClickSquare()" id = "1">1</div>
-                    <div class="grid-item2" id = "2">2</div>
+                    <div class="grid-item1" onClick="onClickSquare(1)" id = "1">1</div>
+                    <div class="grid-item2" onClick="onClickSquare(2)" id = "2">2</div>
                     <div class="grid-item3" id = "3">3</div>  
                     <div class="grid-item4" id = "4">4</div>
                     <div class="grid-item5" id = "5">5</div>
@@ -68,13 +68,18 @@ $_SESSION['pass2'] = $_POST['password2'];
                 var error = "TOO MANY CLICKS";
                 let pass = "";
 
-                    function onClickSquare() {
-                        let clicked = $(this).attr('id');
-                        pass += clicked;
-                        if(pass.size = 4) {
+                    function onClickSquare(num) {
+
+                       
+                        pass += num;
+                        if(pass.length == 4) {
                             rgb_value = pass;
+                            console.log(rgb_value);
                         }
+
                     };
+
+
                     
                     /////////
                     function showIt(element) {
