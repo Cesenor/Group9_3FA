@@ -24,6 +24,19 @@ session_start();
     }
    
 
+    #$_SESSION['rgb'] = $_POST['password2'];
+    #$_SESSION['rgb'] = $_POST['rgb_value'];
+    #echo $_SESSION['rgb'];
+    #$profile_viewer_uid = $_COOKIE['rgb_value'];
+    #echo $profile_viewer_uid;
+    #$_SESSION['w'] = $_POST['test'];
+    #echo $_SESSION['w'];
+    #echo "<script>document.writeln(rgb_value);</script>";
+    echo $_COOKIE["gfg"];
+    $rgb = $_COOKIE["gfg"];
+
+
+
 
     // attempt insert query execution
     $first_name = $_SESSION['name'];
@@ -36,7 +49,7 @@ session_start();
     // using blowfish algorithm.
     $hash_default_salt = password_hash($password, PASSWORD_BCRYPT);
 
-    $sql = "INSERT INTO group9_db (userName, passWord, captcha_type, rgb) VALUES ('$first_name', '$hash_default_salt', '$type', '1111')";
+    $sql = "INSERT INTO group9_db (userName, passWord, captcha_type, rgb) VALUES ('$first_name', '$hash_default_salt', '$type', '$rgb')";
 
 
 

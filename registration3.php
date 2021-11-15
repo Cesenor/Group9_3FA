@@ -6,7 +6,10 @@ session_start();
 $_SESSION['pass2'] = $_POST['password2'];
 #echo $_SESSION['pass2'];
 
+#$_SESSION['rgb_value'] = rgb_value;
+
 ?>
+
 
 
 
@@ -67,17 +70,48 @@ $_SESSION['pass2'] = $_POST['password2'];
                 var rgb_value = 0;
                 var error = "TOO MANY CLICKS";
                 let pass = "";
+                
+                
 
                     function onClickSquare(num) {
-
-                       
                         pass += num;
                         if(pass.length == 4) {
-                            rgb_value = pass;
+                            rgb_value = parseInt(pass);
                             console.log(rgb_value);
+
+
+                            $(document).ready(function () {
+                            createCookie("gfg", rgb_value, "10");
+                });
                         }
 
                     };
+
+                //////////////////////
+                // Creating a cookie after the document is ready
+                //$(document).ready(function () {
+                  //  createCookie("gfg", rgb_value, "10");
+                //});
+                
+                // Function to create the cookie
+                function createCookie(name, value, days) {
+                    var expires;
+                    
+                    if (days) {
+                        var date = new Date();
+                        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                        expires = "; expires=" + date.toGMTString();
+                    }
+                    else {
+                        expires = "";
+                    }
+                    
+                    document.cookie = escape(name) + "=" + 
+                        escape(value) + expires + "; path=/";
+                }
+  
+
+                ///////////////////////
 
 
 
@@ -87,6 +121,7 @@ $_SESSION['pass2'] = $_POST['password2'];
         </div>
         <div class="submit-button">
             <button type="submit" formmethod="POST" id="submit" class="btn btn-success" >Submit</button>
+            <!--<input id="test" name="test" visibility="hidden"></input>-->
             <button type="reset" id="clearButton" class = "btn btn-danger">Clear</button>
         </div>
         </form>
