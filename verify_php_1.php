@@ -20,7 +20,7 @@ session_start();
     $link = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
     OR die('Could not connect to MySQL: ' .
     mysqli_connect_error());
-    echo "Connection Successful ";
+    //echo "Connection Successful ";
 
     // Check connection
 
@@ -46,13 +46,15 @@ session_start();
     $getID = mysqli_fetch_assoc(mysqli_query($link, "SELECT userName FROM group9_db WHERE userName = '$first_name'"));
     //$userID = $getID['userName'];
 
+    //check if the username exists.
     if(isset($getID)){
         $userID = $getID['userName'];
-        echo $userID;
+        //echo $userID;
+
         // it exists so continue to verify. 
         $getPass = mysqli_fetch_assoc(mysqli_query($link, "SELECT passWord FROM group9_db WHERE userName = '$first_name'"));
         $userPass = $getPass['passWord'];
-        echo $userPass;
+        //echo $userPass;
 
         //verify password.
         if(password_verify($password,  $userPass)) {
@@ -68,27 +70,7 @@ session_start();
         echo "Username not stored within database.";
     }
 
-
-
-    //$getPass = mysqli_fetch_assoc(mysqli_query($link, "SELECT passWord FROM group9_db WHERE id = 1"));
-    //$getPass = mysqli_fetch_assoc(mysqli_query($link, "SELECT passWord FROM group9_db WHERE userName = '$first_name'"));
-    //$userPass = $getPass['passWord'];
-    //echo $userPass;
-
-
-    
-
-    //if(password_verify($password,  $userPass)) {
-        // If the password inputs matched the hashed password in the database
-        // Do something, you know... log them in.
-        //echo "true";
-    ///} else {
-        //echo "Incorrect Password Attempt.";
-   // }
-
-
    
-
     // close connection
     mysqli_close($link);
 
