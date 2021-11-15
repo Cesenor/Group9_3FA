@@ -18,6 +18,7 @@ $_SESSION['pass2'] = $_POST['password2'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="temp.css">   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>User Registration</title>
 </head>
 <body style="background-image: url('images/top_secret.png'); background-repeat: no-repeat; background-size: 1850px; background-position: center">
@@ -48,8 +49,8 @@ $_SESSION['pass2'] = $_POST['password2'];
                 <label class="rgb" id="selection">4</label>
                 <label class="rgb"> more colors in any pattern.</label>
                 
-                <div class="grid-container" id="selectionS" onClick="onClick()">
-                    <div class="grid-item1" onClick="onClickSqare()" id = "1">1</div>
+                <div class="grid-container" id="selections">
+                    <div class="grid-item1" onClick="onClickSquare()" id = "1">1</div>
                     <div class="grid-item2" id = "2">2</div>
                     <div class="grid-item3" id = "3">3</div>  
                     <div class="grid-item4" id = "4">4</div>
@@ -65,24 +66,14 @@ $_SESSION['pass2'] = $_POST['password2'];
                 var clicks = 4; 
                 var rgb_value = 0;
                 var error = "TOO MANY CLICKS";
+                let pass = "";
 
                     function onClickSquare() {
-
-                        let pass = "";
-                        pass += document.getElementById("selectins").id;
-
-                //     //clicks = document.getElementById("1").innerHTML;
-                //     // tried a if function but didnt work. Freezes and doesn't increment.
-                //     //if(clicks == "1"){
-                //         // add 1 to rgb.
-                //       //  clicks += document.getElementById("1").innerHTML;
-                //    // }
-
-                //       //clicks = document.getElementById("1").innerHTML;
-                       clicks -= 1;
-                //       clicks += document.getElementById("1").innerHTML;
-                       document.getElementById("selection").innerHTML = clicks;
-                //       rgb_value += document.getElementById("1").innerHTML;
+                        let clicked = $(this).attr('id');
+                        pass += clicked;
+                        if(pass.size = 4) {
+                            rgb_value = pass;
+                        }
                     };
                     
                     /////////
