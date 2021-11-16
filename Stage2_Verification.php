@@ -16,10 +16,13 @@ if ($conn->connect_error) {
 //echo "Connected successfully\n";
 
 
-$username = "user1";//                                                                                                                                    todo
+// needs the session variable. 
+$username = "Cesenor";//                                                                                                                                    todo
 
 $sql = "SELECT capcha_type FROM group9_db WHERE userName = '" . $username . "'";
 $result = $conn->query($sql);
+
+echo $result;
 
 
 $user_image_type = "";
