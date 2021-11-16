@@ -71,7 +71,7 @@ session_start();
             // Do something, you know... log them in.
             echo "true";
             //needs to change to second page vera. 
-            header("Location: Stage3_Verification.php");
+            header("Location: Stage2_Verification.php");
             exit();
         } else {
             //echo "Incorrect Password Attempt.";

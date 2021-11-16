@@ -1,4 +1,11 @@
+<script type="text/javascript">
+function RedirectFunction() {
+  alert("Incorrect Password Attempt.");
+}
+</script>
 <?php 
+session_start();
+
 $servername = "localhost";
 $db_username = "root";
 $db_password = "";
@@ -17,19 +24,21 @@ if ($conn->connect_error) {
 
 
 // needs the session variable. 
-$username = "Cesenor";//                                                                                                                                    todo
+$username = $_SESSION['name'];
+//echo $userName;
+//$username = "Cesenor";
 
-$sql = "SELECT capcha_type FROM group9_db WHERE userName = '" . $username . "'";
+$sql = "SELECT captcha_type FROM group9_db WHERE userName = '" . $username . "'";
 $result = $conn->query($sql);
 
-echo $result;
+//echo $sql;
 
 
 $user_image_type = "";
 if ($result->num_rows > 0) {
-	$user_image_type = $result->fetch_assoc()['capcha_type'];
+	$user_image_type = $result->fetch_assoc()['captcha_type'];
 }
-
+//echo "image type='" . $user_image_type . "'";
 $image_groups = array(
 	"airplane" => -1,
 	"beach" => -1,
@@ -39,24 +48,46 @@ $image_groups = array(
 	"home" => -1,
 	"storage" => -1,
 	);
+	
 
-$correct_number = 0; //should be gotten form whatever thing cameron was talking about                                                                     todo
 //if there is a airplane var, then the form was previously submitted
+//echo json_encode($_POST);
+//echo json_encode(array_keys($_POST));
+//echo json_encode($image_groups);
+
 if (isset($_POST['airplane'])){
+	
 	$pass = True;
-	foreach ($_POST as $category){
-		if (in_array($category, $image_groups)){
-			if ($category = $user_image_type){
-				if($_post[$category] != $correct_number){
+	$correct_number = $_SESSION['correct_number'];
+	
+	foreach (array_keys($_POST) as $category){
+		//echo "category: " . $category . "<br>";
+		if (array_key_exists($category, $image_groups)){
+			//echo $category . ": " . $_POST[$category] . "<br>";
+			if ($category == $user_image_type){
+				//echo "equals";
+				if($_POST[$category] != $correct_number){
+					//echo "fail, correct # = " . $correct_number;
 					$pass = False;
 				}
 			}else{
-				if($_post[$category] > 0){
+				if($_POST[$category] > 0){
 					$pass = False;
 				}
 			}
 		}
 	}
+	if($pass){
+		header( "refresh:3;url=Stage3_Verification.php" );
+	}else{
+		echo '<script type="text/javascript">myFunction();</script>';
+		echo "Redirecting in 3 seconds.";
+		header( "refresh:3;url=Stage1_Verification.php" );
+		exit();
+		
+	}
+}else{
+	echo "not post";
 }
 
 
@@ -71,24 +102,36 @@ $random_keys = array(
 	8 => array_rand($image_groups),
 	9 => $user_image_type
 	);
+	
+
 $random_class_order = array_rand($random_keys,9);
 
+//echo json_encode($random_keys);
+$_SESSION['correct_number'] = array_count_values($random_keys)[$user_image_type];
+//echo $_SESSION['correct_number'];
+
 $images = array();
+$images_types = array();
 
 foreach ($random_class_order as $index){
 	$current_class = $random_keys[$index];
 	//echo $current_class . ";";
 	$sql = "SELECT image From " . $current_class . " ORDER BY RAND() LIMIT 1";
+	//echo $sql . "<br>";
 	$result = $conn->query($sql);
 	array_push($images, $result->fetch_assoc()['image']);
+	array_push($images_types, $current_class);
 }
 ?>
+
+
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Stage 2 Verification</title>
@@ -107,25 +150,30 @@ foreach ($random_class_order as $index){
         <div class="container">
             <div class="row">
                 <div class="col-">
-                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[0]); ?>" style="width:200px;height:200px" class="img-thumbnail">
-                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[1]); ?>" style="width:200px;height:200px" class="img-thumbnail">
-                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[2]); ?>" style="width:200px;height:200px" class="img-thumbnail">
+                    <img id = "1" onclick="clickedTimes('<?php echo $images_types[0];?>', 1)" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[0]); ?>" style="width:200px;height:200px" class="img-thumbnail" >
+                    <img id = "2" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[1]); ?>" style="width:200px;height:200px" class="img-thumbnail" onclick="clickedTimes('<?php echo $images_types[1];?>', 2)">
+                    <img id = "3" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[2]); ?>" style="width:200px;height:200px" class="img-thumbnail" onclick="clickedTimes('<?php echo $images_types[2];?>', 3)">
                 </div>
                 <div class="col-">
-                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[3]); ?>" style="width:200px;height:200px" class="img-thumbnail">
-                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[4]); ?>" style="width:200px;height:200px" class="img-thumbnail">
-                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[5]); ?>" style="width:200px;height:200px" class="img-thumbnail">
+                    <img id = "4" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[3]); ?>" style="width:200px;height:200px" class="img-thumbnail" onclick="clickedTimes('<?php echo $images_types[3];?>', 4)">
+                    <img id = "5" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[4]); ?>" style="width:200px;height:200px" class="img-thumbnail" onclick="clickedTimes('<?php echo $images_types[4];?>', 5)">
+                    <img id = "6" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[5]); ?>" style="width:200px;height:200px" class="img-thumbnail" onclick="clickedTimes('<?php echo $images_types[5];?>', 6)">
                 </div>
                 <div class="col-">
-                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[6]); ?>" style="width:200px;height:200px" class="img-thumbnail">
-                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[7]); ?>" style="width:200px;height:200px" class="img-thumbnail">
-                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[8]); ?>" style="width:200px;height:200px" class="img-thumbnail">
+                    <img id = "7" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[6]); ?>" style="width:200px;height:200px" class="img-thumbnail" onclick="clickedTimes('<?php echo $images_types[6];?>', 7)">
+                    <img id = "8" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[7]); ?>" style="width:200px;height:200px" class="img-thumbnail" onclick="clickedTimes('<?php echo $images_types[7];?>', 8)">
+                    <img id = "9" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($images[8]); ?>" style="width:200px;height:200px" class="img-thumbnail" onclick="clickedTimes('<?php echo $images_types[8];?>', 9)">
                 </div>
             </div>
         </div>
     </div>
 
-   <form action = "Stage3_Verification.html">
+   <form action = "Stage2_Verification.php", method = "POST", onSubmit="submitJS()">
+		<?php 
+			foreach (array_keys($image_groups) as $image_group){
+				echo "<input type='hidden' id = '" . $image_group . "' name='" . $image_group . "' value=''/>\n";
+			}
+		?>
         <div style=" text-align: center">
             <div>
                 <a target="_blank" href="recover.html">Forgot your password?</a>
@@ -135,4 +183,134 @@ foreach ($random_class_order as $index){
         </div>
     </form>
 </body>
-</html>
+
+<script type = "text/javaScript">
+    let airplaneCount = 0;
+    let beachCount = 0;
+    let boatCount = 0;
+    let carCount = 0;
+    let forestCount = 0;
+    let homeCount = 0;
+    let storageCount = 0;
+    let oneClicked = false;
+    let twoClicked = false;
+    let threeClicked = false;
+    let fourClicked = false;
+    let fiveClicked = false;
+    let sixClicked = false;
+    let sevenClicked = false;
+    let eightClicked = false;
+    let nineClicked = false;
+
+	function submitJS(){
+		//document.write("foo");
+		<?php 
+		foreach (array_keys($image_groups) as $image_group){
+			echo "document.getElementById('" . $image_group . "').value = " . $image_group . "Count;\n";
+		}
+		?>
+		return false;
+	}
+
+    function clickedTimes(name, id) {
+        if(name == "airplane") {
+            if(hasBeenClicked(id)) {
+                airplaneCount--;
+                toggleBool(id);
+            } else {
+                airplaneCount++;
+                toggleBool(id);
+            }
+        } else if(name == "beach") {
+            if(hasBeenClicked(id)) {
+                beachCount--;
+                toggleBool(id);
+            } else {
+                beachCount++;
+                toggleBool(id);
+            }
+        } else if(name=="boat") {
+            if(hasBeenClicked(id)) {
+                boatCount--;
+                toggleBool(id);
+            } else {
+                boatCount++;
+                toggleBool(id);
+            }
+        } else if(name=="car") {
+             if(hasBeenClicked(id)) {
+                carCount--;
+                toggleBool(id);
+             } else {
+                carCount++;
+                toggleBool(id);
+             }
+        } else if(name=="forest") {
+            if(hasBeenClicked(id)) {
+                forestCount--;
+                toggleBool(id);
+            } else {
+                forestCount++;
+                toggleBool(id);
+            }
+        } else if(name=="home") {
+            if(hasBeenClicked(id)) {
+                homeCount--;
+                toggleBool(id);
+            } else {
+                homeCount++;
+                toggleBool(id);
+            }
+        } else if(name=="storage") {
+           if(hasBeenClicked(id)) {
+                storageCount--;
+                toggleBool(id);
+           } else {
+                storageCount++;
+                toggleBool(id);
+           }
+        }
+    };
+    function toggleBool(id) {
+        if(id == 1) {
+            return oneClicked;
+        } else if(id == 2) {
+            return twoClicked;
+        } else if(id == 3) {
+            return threeClicked;
+        } else if(id == 4) {
+            return fourClicked;
+        } else if(id == 5) {
+            return fiveClicked;
+        } else if(id == 6) {
+            return sixClicked;
+        } else if(id == 7) {
+            return sevenClicked;
+        } else if(id == 8) {
+            return eightClicked;
+        } else if(id == 9) {
+            return nineClicked;
+        }
+    };
+    function hasBeenClicked(id) {
+        if(id == 1) {
+            oneClicked = !oneClicked;
+        } else if(id == 2) {
+            twoClicked = !twoClicked;
+        } else if(id == 3) {
+            threeClicked = !threeClicked;
+        } else if(id == 4) {
+            fourClicked = !fourClicked;
+        } else if(id == 5) {
+            fiveClicked = !fiveClicked;
+        } else if(id == 6) {
+            sixClicked = !sixClicked;
+        } else if(id == 7) {
+            sevenClicked = !sevenClicked;
+        } else if(id == 8) {
+            eightClicked = !eightClicked;
+        } else if(id == 9) {
+            nineClicked = !nineClicked;
+        }
+    };
+</script>
