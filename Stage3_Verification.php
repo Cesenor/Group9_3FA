@@ -2,6 +2,36 @@
 // Start the session
 session_start();
 
+$color_range = 30;
+
+$colors = array(
+	"red" => array("R"=>"256","G"=>"0","B"=>"0"),
+	"green" => array("R"=>"0","G"=>"256","B"=>"0"),
+	"blue" => array("R"=>"0","G"=>"0","B"=>"256"),
+	"yellow" => array("R"=>"256","G"=>"256","B"=>"0"),
+	"purple" => array("R"=>"128","G"=>"0","B"=>"128"),
+	"orange" => array("R"=>"256","G"=>"165","B"=>"0"),
+	"teal" => array("R"=>"0","G"=>"128","B"=>"128"),
+	"white" => array("R"=>"256","G"=>"256","B"=>"256"),
+	"black" => array("R"=>"0","G"=>"0","B"=>"0")
+);
+foreach($colors as &$color){
+	$color["R"] = $color["R"] + max(0,min(255,rand(-1 * $color_range, $color_range)));
+	$color["G"] = $color["G"] + max(0,min(255,rand(-1 * $color_range, $color_range)));
+	$color["B"] = $color["B"] + max(0,min(255,rand(-1 * $color_range, $color_range)));
+}
+//echo json_encode($colors);
+
+//shuffle the colors
+$keys = array_keys($colors);
+shuffle($keys);
+
+foreach ($keys as $key){
+	$random_order[$key] = $colors[$key];
+}
+//echo json_encode($colors);
+echo json_encode($random_order);
+
 ?>
 
 
@@ -47,6 +77,19 @@ session_start();
                 <label class="rgb"> more colors in any pattern.</label>
                 
                 <div class="grid-container" id="selections">
+					<?php 
+						$i = 1;
+						foreach($random_order as $key => $color){
+							//echo json_encode($random_order);
+							//echo $random_order[$i-1] . " = " . json_encode($color);
+							//echo "color:" . json_encode($color);
+							$RGB = "rgb(" . $color["R"] . ", " . $color["G"] . ", " . $color["B"] . ")";
+							$RRB_style = " style='background-color:" . $RGB . ";'";
+							echo "<div class='grid-item" . $i . "' onClick='onClickSquare(" . $i . ")' id = '" . $i . "' " . $RRB_style . ">" . $key . "</div>\n";
+							$i++;
+						}
+					?>
+					<!--
                     <div class="grid-item1" onClick="onClickSquare(1)" id = "1">1</div>
                     <div class="grid-item2" onClick="onClickSquare(2)" id = "2">2</div>
                     <div class="grid-item3" onClick="onClickSquare(3)" id = "3">3</div>  
@@ -56,6 +99,7 @@ session_start();
                     <div class="grid-item7" onClick="onClickSquare(7)" id = "7">7</div>
                     <div class="grid-item8" onClick="onClickSquare(8)" id = "8">8</div>
                     <div class="grid-item9" onClick="onClickSquare(9)" id = "9">9</div>
+					-->
                 </div>
 
                 <!-- script starts here -->
