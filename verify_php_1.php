@@ -6,6 +6,12 @@
 function myFunction() {
   alert("Incorrect Password Attempt.");
 }
+
+
+function myFunctionLock() {
+  alert("Max Incorrect Password Attempt Reached.");
+}
+
 </script>
 
 
@@ -69,19 +75,47 @@ session_start();
         if(password_verify($password,  $userPass)) {
             // If the password inputs matched the hashed password in the database
             // Do something, you know... log them in.
+            
+            //reset counter here. 
+
+
+
             echo "true";
             //needs to change to second page vera. 
             header("Location: Stage2_Verification.php");
             exit();
         } else {
-            //echo "Incorrect Password Attempt.";
-            echo '<script type="text/javascript">myFunction();</script>';
-            echo "Redirecting in 3 seconds.";
-            header( "refresh:3;url=Stage1_Verification.php" );
-            exit();
+            //check counter first.  
+            $getLock = mysqli_fetch_assoc(mysqli_query($link, "SELECT lockNum FROM group9_db WHERE userName = '$first_name'"));
+            $lockNum = $getLock['lockNum'];
+            #echo $lockNum;
 
-    
-        
+            # meaning 5.
+            if($lockNum > 4){
+
+                echo '<script type="text/javascript">myFunctionLock();</script>';
+                echo "Redirecting in 3 seconds.";
+                header( "refresh:3;url=lockOut.php" );
+                exit();
+                
+            } else{
+                #increment here.
+                $increment = $lockNum + 1;
+                $sql = "UPDATE group9_db SET lockNum = '$increment' WHERE userName = '$first_name'";
+
+
+                if(mysqli_query($link, $sql)){
+                    #echo "Contact Request added successfully.";
+                }
+
+
+                echo '<script type="text/javascript">myFunction();</script>';
+                echo "Redirecting in 3 seconds.";
+                #maybe make this dynamic. 
+                header( "refresh:3;url=Stage1_Verification.php" );
+                exit();
+
+            }
         }
 
 
