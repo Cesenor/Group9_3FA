@@ -100,6 +100,7 @@
           <th>Password</th>
           <th>Captcha</th>
           <th>RGB</th>
+          <th>Lockout Attempts</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -136,6 +137,7 @@ $db = $conn;
           <td><?php echo $data['passWord']; ?></td>
           <td><?php echo $data['captcha_type']; ?></td>
           <td><?php echo $data['rgb']; ?></td>
+          <td><?php echo $data['lockNum']; ?></td>
           <td><i class="fas fa-edit"></i></td>
         </tr>	
       <?php
