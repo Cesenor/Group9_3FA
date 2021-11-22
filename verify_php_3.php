@@ -63,7 +63,7 @@ session_start();
     //check if the username exists.
     if(isset($getID)){
         $userID = $getID['userName'];
-        echo $userID;
+        #echo $userID;
 
         // it exists so continue to verify. 
         $getRGB = mysqli_fetch_assoc(mysqli_query($link, "SELECT rgb FROM group9_db WHERE userName = '$first_name'"));

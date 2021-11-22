@@ -2,6 +2,12 @@
 function RedirectFunction() {
   alert("Incorrect Password Attempt.");
 }
+
+function myFunctionLock() {
+  alert("Max Incorrect Password Attempt Reached.");
+}
+
+
 </script>
 <?php 
 session_start();
@@ -80,10 +86,36 @@ if (isset($_POST['airplane'])){
 	if($pass){
 		header( "refresh:3;url=Stage3_Verification.php" );
 	}else{
-		echo '<script type="text/javascript">myFunction();</script>';
-		echo "Redirecting in 3 seconds.";
-		header( "refresh:3;url=Stage1_Verification.php" );
-		exit();
+		//check counter first.  
+        $getLock = mysqli_fetch_assoc(mysqli_query($conn, "SELECT lockNum FROM group9_db WHERE userName = '$username'"));
+        $lockNum = $getLock['lockNum'];
+        #echo $lockNum;
+
+        # meaning 5.
+        if($lockNum > 4){
+
+            echo '<script type="text/javascript">myFunctionLock();</script>';
+            echo "Redirecting in 3 seconds.";
+            header( "refresh:3;url=lockOut.php" );
+            exit();
+            
+        } else{
+            #increment here.
+            $increment = $lockNum + 1;
+            $sql = "UPDATE group9_db SET lockNum = '$increment' WHERE userName = '$username'";
+
+
+            if(mysqli_query($conn, $sql)){
+                #echo "Contact Request added successfully.";
+            }
+
+
+            echo '<script type="text/javascript">RedirectFunction();</script>';
+            echo "Redirecting in 3 seconds.";
+            header( "refresh:3;url=Stage1_Verification.php" );
+            exit();
+
+        }
 		
 	}
 }else{
