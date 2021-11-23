@@ -73,8 +73,7 @@ $_SESSION['pass2'] = $_POST['password2'];
                 var rgb_value = 0;
                 var error = "TOO MANY CLICKS";
                 let pass = "";
-                
-                
+                let count = 0;
 
                     function onClickSquare(num) {
                         pass += num;
@@ -85,24 +84,27 @@ $_SESSION['pass2'] = $_POST['password2'];
                             createCookie("gfg", rgb_value, "10");
                             });
                         }
-                        if(num == 1) {
-                            $("#rowBelow").append("Teal ")
-                        } else if(num == 2) {
-                            $("#rowBelow").append("Orange ")
-                        } else if(num == 3) {
-                            $("#rowBelow").append("White ")
-                        } else if(num == 4) {
-                            $("#rowBelow").append("Blue ")
-                        } else if(num == 5) {
-                            $("#rowBelow").append("Yellow ")
-                        } else if(num == 6) {
-                            $("#rowBelow").append("Red ")
-                        } else if(num == 7) {
-                            $("#rowBelow").append("Purple ")
-                        } else if(num == 8) {
-                            $("#rowBelow").append("Black ")
-                        } else if(num == 9) {
-                            $("#rowBelow").append("Green ")
+                        count++;
+                        if(count <= 4) {
+                            if(num == 1) {
+                                $("#rowBelow").append("Teal ")
+                            } else if(num == 2) {
+                                $("#rowBelow").append("Orange ")
+                            } else if(num == 3) {
+                                $("#rowBelow").append("White ")
+                            } else if(num == 4) {
+                                $("#rowBelow").append("Blue ")
+                            } else if(num == 5) {
+                                $("#rowBelow").append("Yellow ")
+                            } else if(num == 6) {
+                                $("#rowBelow").append("Red ")
+                            } else if(num == 7) {
+                                $("#rowBelow").append("Purple ")
+                            } else if(num == 8) {
+                                $("#rowBelow").append("Black ")
+                            } else if(num == 9) {
+                                $("#rowBelow").append("Green ")
+                            }
                         }
                     };
 
