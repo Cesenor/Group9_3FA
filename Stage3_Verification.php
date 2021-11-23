@@ -85,7 +85,7 @@ foreach ($keys as $key){
 							//echo "color:" . json_encode($color);
 							$RGB = "rgb(" . $color["R"] . ", " . $color["G"] . ", " . $color["B"] . ")";
 							$RRB_style = " style='background-color:" . $RGB . ";'";
-							echo "<div class='grid-item" . $i . "' onClick='onClickSquare(" . $i . ")' id = '" . $i . "' " . $RRB_style . ">" . $key . "</div>\n";
+							echo "<div class='grid-item" . $i . "' onClick='onClickSquare(" . $i . ")' id = '" . $i . "' " . $RRB_style . ">" . "</div>\n";
 							$i++;
 						}
 					?>
