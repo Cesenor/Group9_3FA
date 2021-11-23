@@ -35,7 +35,7 @@ session_start();
                     <button type="submit" class="btn btn-success">Verify</button>
             </span>
             <div>
-                <a target="_blank" href="recover.html">Forgot your password?</a>
+                <a target="_blank" href="recover.php">Forgot your password?</a>
             </div>
         </form>
     </body>

@@ -96,7 +96,7 @@ if (isset($_POST['airplane'])){
 
             echo '<script type="text/javascript">myFunctionLock();</script>';
             echo "Redirecting in 3 seconds.";
-            header( "refresh:3;url=lockOut.php" );
+            header( "refresh:3;url=recover.php" );
             exit();
             
         } else{
