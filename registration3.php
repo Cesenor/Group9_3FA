@@ -63,6 +63,9 @@ $_SESSION['pass2'] = $_POST['password2'];
                     <div class="grid-item8" onClick="onClickSquare(8)" id = "8">8</div>
                     <div class="grid-item9" onClick="onClickSquare(9)" id = "9">9</div>
                 </div>
+                <span id="rowBelow">
+
+                </span>
 
                 <!-- script starts here -->
                 <script type = "text/javaScript">
@@ -78,13 +81,29 @@ $_SESSION['pass2'] = $_POST['password2'];
                         if(pass.length == 4) {
                             rgb_value = parseInt(pass);
                             console.log(rgb_value);
-
-
                             $(document).ready(function () {
                             createCookie("gfg", rgb_value, "10");
-                });
+                            });
                         }
-
+                        if(num == 1) {
+                            $("#rowBelow").append("Teal")
+                        } else if(num == 2) {
+                            $("#rowBelow").append("Orange")
+                        } else if(num == 3) {
+                            $("#rowBelow").append("White")
+                        } else if(num == 4) {
+                            $("#rowBelow").append("Blue")
+                        } else if(num == 5) {
+                            $("#rowBelow").append("Yellow")
+                        } else if(num == 6) {
+                            $("#rowBelow").append("Red")
+                        } else if(num == 7) {
+                            $("#rowBelow").append("Purple")
+                        } else if(num == 8) {
+                            $("#rowBelow").append("Black")
+                        } else if(num == 9) {
+                            $("#rowBelow").append("Green")
+                        }
                     };
 
                 //////////////////////
