@@ -84,6 +84,18 @@ if (isset($_POST['airplane'])){
 		}
 	}
 	if($pass){
+
+        //reset lockNum
+        //reset counter here. 
+        #$getLock = mysqli_fetch_assoc(mysqli_query($conn, "SELECT lockNum FROM group9_db WHERE userName = '$username'"));
+        #$lockNum = $getLock['lockNum'];
+        #$increment = 0;
+        #$sql = "UPDATE group9_db SET lockNum = '$increment' WHERE userName = '$username'";
+
+        #if(mysqli_query($conn, $sql)){
+            #echo "Contact Request added successfully.";
+        #}
+
 		header( "refresh:3;url=Stage3_Verification.php" );
 	}else{
 		//check counter first.  
