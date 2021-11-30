@@ -74,22 +74,6 @@ session_start();
         //verify password.
         if(password_verify($password,  $userPass)) {
             // If the password inputs matched the hashed password in the database
-            // Do something, you know... log them in.
-            
-            //reset counter here. 
-            #$getLock = mysqli_fetch_assoc(mysqli_query($link, "SELECT lockNum FROM group9_db WHERE userName = '$first_name'"));
-            #$lockNum = $getLock['lockNum'];
-            #$increment = 0;
-            #$sql = "UPDATE group9_db SET lockNum = '$increment' WHERE userName = '$first_name'";
-
-            #if(mysqli_query($link, $sql)){
-                #echo "Contact Request added successfully.";
-            #}
-
-            
-
-
-
             echo "true";
             //needs to change to second page vera. 
             header("Location: Stage2_Verification.php");
