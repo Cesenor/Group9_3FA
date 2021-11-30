@@ -36,7 +36,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-    <title>Edit</title>
+    <title>Admin Page</title>
   </head>
   <style>
     html,
@@ -100,7 +100,7 @@
           <th>Password</th>
           <th>Captcha</th>
           <th>RGB</th>
-          <th>Lockout</th>
+          <th>Lockout Attempts</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -111,40 +111,40 @@
 
 
 		
-      $servername = "localhost";
-      $db_username = "root";
-      $db_password = "";
+$servername = "localhost";
+$db_username = "root";
+$db_password = "";
 
-      // Create connection
-      //$conn = new mysqli($servername, $db_username, $db_password, "SE2");
-      $conn = new mysqli($servername, $db_username, $db_password, "3fa_db");
+// Create connection
+//$conn = new mysqli($servername, $db_username, $db_password, "SE2");
+$conn = new mysqli($servername, $db_username, $db_password, "3fa_db");
 
 
 
-      // Check connection
-      if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+$db = $conn;
+      $records = mysqli_query($db,"select * from group9_db"); // fetch data from database
+
+      while($data = mysqli_fetch_array($records))
+      {
+      ?>
+        <tr>
+          <td><?php echo $data['id']; ?></td>
+          <td><?php echo $data['userName']; ?></td>
+          <td><?php echo $data['passWord']; ?></td>
+          <td><?php echo $data['captcha_type']; ?></td>
+          <td><?php echo $data['rgb']; ?></td>
+          <td><?php echo $data['lockNum']; ?></td>
+          <td><i class="fas fa-edit"></i></td>
+        </tr>	
+      <?php
       }
-      $db = $conn;
-        $records = mysqli_query($db,"select * from group9_db"); // fetch data from database
+      ?>
+    </table>
 
-        while($data = mysqli_fetch_array($records))
-        {
-        ?>
-          <tr>
-            <td><?php echo $data['id']; ?></td>
-            <td><?php echo $data['userName']; ?></td>
-            <td><?php echo $data['passWord']; ?></td>
-            <td><?php echo $data['captcha_type']; ?></td>
-            <td><?php echo $data['rgb']; ?></td>
-            <td><?php echo $data['lockNum']; ?></td>
-            <td><a href="edit.php?id=<?php echo $data['id']; ?>">Edit</a></td>
-          </tr>	
-        <?php
-        }
-        ?>
-      </table>
-
-  <?php mysqli_close($db); // Close connection ?>
+<?php mysqli_close($db); // Close connection ?>
   </body>
 </html>

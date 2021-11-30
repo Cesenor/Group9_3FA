@@ -132,7 +132,7 @@ session_start();
  
                  echo '<script type="text/javascript">myFunction();</script>';
                  echo "Redirecting in 3 seconds.";
-                 header( "refresh:3;url=Stage1_Verification.php" );
+                 header( "refresh:3;url=Stage3_Verification.php" );
                  exit();
  
              }

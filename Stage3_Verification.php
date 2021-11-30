@@ -82,7 +82,7 @@ foreach ($keys as $key){
 						foreach($random_order as $key => $color){
 							$RGB = "rgb(" . $color["R"] . ", " . $color["G"] . ", " . $color["B"] . ")";
 							$RRB_style = " style='background-color:" . $RGB . ";'";
-							echo "<div class='grid-item" . $i . "' onClick='onClickSquare(" . $i . ")' id = '" . $color["id"] . "' " . $RRB_style . ">" . "</div>\n";
+							echo "<div class='grid-item" . $i . "' onClick='onClickSquare(" . $color["id"] . ")' id = '" . $i . "' " . $RRB_style . ">" . "</div>\n";
 							$i++;
 						}
 					?>

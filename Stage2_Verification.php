@@ -131,7 +131,7 @@ if (isset($_POST['airplane'])){
 
             echo '<script type="text/javascript">RedirectFunction();</script>';
             echo "Redirecting in 3 seconds.";
-            header( "refresh:3;url=Stage1_Verification.php" );
+            header( "refresh:3;url=Stage2_Verification.php" );
             exit();
 
         }
