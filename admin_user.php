@@ -36,7 +36,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-    <title>Admin Page</title>
+    <title>AAdmin User</title>
   </head>
   <style>
     html,
@@ -101,7 +101,7 @@
           <th>Captcha</th>
           <th>RGB</th>
           <th>Lockout</th>
-          <th>Unlock Account?</th>
+          <th>Action</th>
         </tr>
       </thead>
 
@@ -138,18 +138,13 @@
             <td><?php echo $data['captcha_type']; ?></td>
             <td><?php echo $data['rgb']; ?></td>
             <td><?php echo $data['lockNum']; ?></td>
-            <td><input type="submit" name="unlock" value="Unlock"></td>
-          </tr>
+            <td><a href="unlock.php?id=<?php echo $data['id']; ?>">Unlock</a></td>
+          </tr>	
         <?php
         }
         ?>
       </table>
-  <?php
-    if(isset($_GET['unlock'])) // when click on Update button
-    { 
-      $edit = mysqli_query($db,"update group9_db set lockNum='0'  where id='$id'"); 
-    }
-  ?>
+
   <?php mysqli_close($db); // Close connection ?>
   </body>
 </html>

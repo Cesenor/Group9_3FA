@@ -22,22 +22,22 @@
             </div>
         </nav>
     <div class="recover-info">
-        <form method="post">
+       
             <div class="recover-entry">
                 <label class="field-name">Email Address<span class="required-asterisk">*</span></label>
                 <input class="field-input" placeholder="Email/Username" type="text" name="userLogin" id="email-input" required>
             </div>
             <div class="submit-button">
-                <button type="submit" formmethod="POST" id="submit" class="btn btn-success" onclick="sendMailer()">Submit</button>
+                <button type="button" id="submit" class="btn btn-success" onclick="sendMailer()">Submit</button>
                 <button type="reset" id="clearButton" class = "btn btn-danger">Clear</button>
             </div>
-        </form>
+        
     </div>
     </div>
-</body>
-<script>
+
+<script ="text/javaScript">
     function sendMailer() {
-        var nodemailer = require('nodemailer');
+        const nodemailer = require('nodemailer');
 
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -63,4 +63,5 @@
         });
     }
 </script>
+</body>
 </html>
