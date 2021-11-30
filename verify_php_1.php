@@ -57,6 +57,21 @@ session_start();
     $password = $_SESSION['pass'];
 
 
+    $getLock = mysqli_fetch_assoc(mysqli_query($link, "SELECT lockNum FROM group9_db WHERE userName = '$first_name'"));
+    $lockNum = $getLock['lockNum'];
+    #echo $lockNum;
+
+    # meaning 5.
+    if($lockNum > 4){
+
+        echo '<script type="text/javascript">myFunctionLock();</script>';
+        echo "Redirecting in 3 seconds.";
+        header( "refresh:3;url=recover.php" );
+        exit();
+        
+    }
+
+
     //$getID = mysqli_fetch_assoc(mysqli_query($link, "SELECT userName FROM group9_db WHERE id = 1"));
     $getID = mysqli_fetch_assoc(mysqli_query($link, "SELECT userName FROM group9_db WHERE userName = '$first_name'"));
     //$userID = $getID['userName'];

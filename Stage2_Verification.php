@@ -34,6 +34,25 @@ $username = $_SESSION['name'];
 //echo $userName;
 //$username = "Cesenor";
 
+
+$getLock = mysqli_fetch_assoc(mysqli_query($conn, "SELECT lockNum FROM group9_db WHERE userName = '$username'"));
+        $lockNum = $getLock['lockNum'];
+        #echo $lockNum;
+
+        # meaning 5.
+if($lockNum > 4){
+
+    echo '<script type="text/javascript">myFunctionLock();</script>';
+    echo "Redirecting in 3 seconds.";
+    header( "refresh:3;url=recover.php" );
+    exit();
+            
+}
+
+
+
+
+
 $sql = "SELECT captcha_type FROM group9_db WHERE userName = '" . $username . "'";
 $result = $conn->query($sql);
 
