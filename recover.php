@@ -16,8 +16,8 @@
             <a class="navbar-brand" href="#">Secure Login Service</a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="Stage1_Verification.html">Login</a>
-                    <a class="nav-item nav-link" href="registration1.html">Registration</a>
+                    <a class="nav-item nav-link" href="Stage1_Verification.php">Login</a>
+                    <a class="nav-item nav-link" href="registration1.php">Registration</a>
                 </div>
             </div>
         </nav>
@@ -28,11 +28,39 @@
                 <input class="field-input" placeholder="Email/Username" type="text" name="userLogin" id="email-input" required>
             </div>
             <div class="submit-button">
-                <button type="submit" formmethod="POST" id="submit" class="btn btn-success">Submit</button>
+                <button type="submit" formmethod="POST" id="submit" class="btn btn-success" onclick="sendMailer()">Submit</button>
                 <button type="reset" id="clearButton" class = "btn btn-danger">Clear</button>
             </div>
         </form>
     </div>
     </div>
 </body>
+<script>
+    function sendMailer() {
+        var nodemailer = require('nodemailer');
+
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'fluffymcflufferstines@gmail.com',
+                pass: 'fatboy54622'
+            }
+        });
+
+        var mailOptions = {
+            from: 'fluffymcflufferstines@gmail.com',
+            to: "document.getElementById('email-input')",
+            subject: 'Recovery Email',
+            text: 'Here is you new password: Password'
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    }
+</script>
 </html>
