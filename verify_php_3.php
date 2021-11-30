@@ -52,7 +52,7 @@ session_start();
     $lockNum = $getLock['lockNum'];
     #echo $lockNum;
 
-    # meaning 5.
+    # meaning 5.s
     if($lockNum > 4){
 
         echo '<script type="text/javascript">myFunctionLock();</script>';
