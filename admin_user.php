@@ -145,13 +145,9 @@
         ?>
       </table>
   <?php
-    if(isset($_POST['update'])) // when click on Update button
-    {
-        $userName = $_POST['userName'];
-        $lockNum = $_POST['lockNum'];
-      
-        $edit = mysqli_query($db,"update group9_db set lockNum='0'  where id='$id'");
-          
+    if(isset($_GET['unlock'])) // when click on Update button
+    { 
+      $edit = mysqli_query($db,"update group9_db set lockNum='0'  where id='$id'"); 
     }
   ?>
   <?php mysqli_close($db); // Close connection ?>
