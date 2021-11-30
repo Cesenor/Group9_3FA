@@ -47,14 +47,12 @@ $_SESSION['pass'] = $_POST['userPassword'];
                 <label class="captcha">Please select one of the following options to be your "topic" for future logging in: </label>
                <pre> <select name="password2" id="password2" placeholder="Topics">
                     <option value="airplane">airplane</option>
-                    <option value="bus">Bus</option>
-                    <option value="flower">Flower</option>
-                    <option value="cat">Cat</option>
-                    <option value="bird">Bird</option>
-                    <option value="sign">Street Sign</option>
-                    <option value="deer">Deer</option>
-                    <option value="fountain">Water Fountain</option>
-                    <option value="dog">Dog</option>
+                    <option value="beach">Beach</option>
+                    <option value="boat">Boat</option>
+                    <option value="car">Car</option>
+                    <option value="forest">Forest</option>
+                    <option value="home">Mobile Home</option>
+                    <option value="storage">Storage Container</option>
 
                   </select> </pre>
             </div>

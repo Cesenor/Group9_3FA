@@ -57,6 +57,21 @@ session_start();
     $password = $_SESSION['pass'];
 
 
+    $getLock = mysqli_fetch_assoc(mysqli_query($link, "SELECT lockNum FROM group9_db WHERE userName = '$first_name'"));
+    $lockNum = $getLock['lockNum'];
+    #echo $lockNum;
+
+    # meaning 5.
+    if($lockNum > 4){
+
+        echo '<script type="text/javascript">myFunctionLock();</script>';
+        echo "Redirecting in 3 seconds.";
+        header( "refresh:3;url=recover.php" );
+        exit();
+        
+    }
+
+
     //$getID = mysqli_fetch_assoc(mysqli_query($link, "SELECT userName FROM group9_db WHERE id = 1"));
     $getID = mysqli_fetch_assoc(mysqli_query($link, "SELECT userName FROM group9_db WHERE userName = '$first_name'"));
     //$userID = $getID['userName'];
@@ -74,22 +89,6 @@ session_start();
         //verify password.
         if(password_verify($password,  $userPass)) {
             // If the password inputs matched the hashed password in the database
-            // Do something, you know... log them in.
-            
-            //reset counter here. 
-            #$getLock = mysqli_fetch_assoc(mysqli_query($link, "SELECT lockNum FROM group9_db WHERE userName = '$first_name'"));
-            #$lockNum = $getLock['lockNum'];
-            #$increment = 0;
-            #$sql = "UPDATE group9_db SET lockNum = '$increment' WHERE userName = '$first_name'";
-
-            #if(mysqli_query($link, $sql)){
-                #echo "Contact Request added successfully.";
-            #}
-
-            
-
-
-
             echo "true";
             //needs to change to second page vera. 
             header("Location: Stage2_Verification.php");

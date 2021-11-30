@@ -34,6 +34,25 @@ $username = $_SESSION['name'];
 //echo $userName;
 //$username = "Cesenor";
 
+
+$getLock = mysqli_fetch_assoc(mysqli_query($conn, "SELECT lockNum FROM group9_db WHERE userName = '$username'"));
+        $lockNum = $getLock['lockNum'];
+        #echo $lockNum;
+
+        # meaning 5.
+if($lockNum > 4){
+
+    echo '<script type="text/javascript">myFunctionLock();</script>';
+    echo "Redirecting in 3 seconds.";
+    header( "refresh:3;url=recover.php" );
+    exit();
+            
+}
+
+
+
+
+
 $sql = "SELECT captcha_type FROM group9_db WHERE userName = '" . $username . "'";
 $result = $conn->query($sql);
 
@@ -84,18 +103,6 @@ if (isset($_POST['airplane'])){
 		}
 	}
 	if($pass){
-
-        //reset lockNum
-        //reset counter here. 
-        #$getLock = mysqli_fetch_assoc(mysqli_query($conn, "SELECT lockNum FROM group9_db WHERE userName = '$username'"));
-        #$lockNum = $getLock['lockNum'];
-        #$increment = 0;
-        #$sql = "UPDATE group9_db SET lockNum = '$increment' WHERE userName = '$username'";
-
-        #if(mysqli_query($conn, $sql)){
-            #echo "Contact Request added successfully.";
-        #}
-
 		header( "refresh:3;url=Stage3_Verification.php" );
 	}else{
 		//check counter first.  

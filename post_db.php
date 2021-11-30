@@ -57,6 +57,7 @@ session_start();
     
     if(mysqli_query($link, $sql)){
         echo "Contact Request added successfully.";
+        header("Location: Stage1_Verification.php");
     } else{
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
     }
