@@ -27,10 +27,10 @@ session_start();
         <form style="text-align: center; margin-top: 20%;" method="post" action="verify_php_1.php">
             <span class="form-group">
                 <label>Username:
-                    <pre> <input type="text" pattern="[a-zA-Z0-9]{3,16}" placeholder="Username" name="userName_vera" class="form-control"/> </pre>
+                    <pre> <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{3, 32}$" placeholder="Username" name="userName_vera" class="form-control"/> </pre>
                 </label>
                 <label>Password:
-                    <pre> <input type="password" pattern="[a-zA-Z0-9]{3,16}" placeholder="Password" name = "userPass_vera" class="form-control"/> </pre>
+                    <pre> <input type="password" pattern="[a-zA-Z0-9]{3,32}" placeholder="Password" name = "userPass_vera" class="form-control"/> </pre>
                 </label>
                     <button type="submit" class="btn btn-success">Verify</button>
             </span>
