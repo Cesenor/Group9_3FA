@@ -37,7 +37,7 @@
 
 <script ="text/javaScript">
     function sendMailer() {
-        const nodemailer = require('nodemailer');
+        import nodemailer from 'nodemailer';
 
         var transporter = nodemailer.createTransport({
             service: 'gmail',
