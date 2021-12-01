@@ -7,7 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="temp.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("user_wHIcXgmNRIXkS68Up5jRd");
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('contact_service', 'contact_form', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
     <title>User Registration</title>
 </head>
 <body style="background-image: url('images/top_secret.png'); background-repeat: no-repeat; background-size: 1850px; background-position-y:24%;">
@@ -22,46 +45,18 @@
             </div>
         </nav>
     <div class="recover-info">
-       
+       <form id="contact-form">
+            <input type="hidden" name="contact_number">
             <div class="recover-entry">
                 <label class="field-name">Email Address<span class="required-asterisk">*</span></label>
-                <input class="field-input" placeholder="Email/Username" type="text" name="userLogin" id="email-input" required>
+                <input class="field-input" placeholder="Email/Username" type="text" name="user_email" id="email-input" required>
             </div>
             <div class="submit-button">
-                <button type="button" id="submit" class="btn btn-success" onclick="sendMailer()">Submit</button>
+                <input type="submit" value="Send" id="submit" class="btn btn-success">
                 <button type="reset" id="clearButton" class = "btn btn-danger">Clear</button>
             </div>
-        
+       </form>
     </div>
     </div>
-
-<script ="text/javaScript">
-    function sendMailer() {
-        import nodemailer from 'nodemailer';
-
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'fluffymcflufferstines@gmail.com',
-                pass: 'fatboy54622'
-            }
-        });
-
-        var mailOptions = {
-            from: 'fluffymcflufferstines@gmail.com',
-            to: "document.getElementById('email-input')",
-            subject: 'Recovery Email',
-            text: 'Here is you new password: Password'
-        };
-
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
-    }
-</script>
 </body>
 </html>
