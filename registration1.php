@@ -46,7 +46,7 @@ session_start();
                 <label class="captcha">Please fill out all of the required fields below.</label><br><br>
                 <div class="field">
                     <label class="field-name">Email/Username<span class="required-asterisk">*</span></label>
-                    <pre> <input class="field-input" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{3, 32}$" placeholder="Email/Username" type="text" name="userLogin" id="email-input" required> </pre>
+                    <pre> <input class="field-input" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ {3,32}" placeholder="Email/Username" type="text" name="userLogin" id="email-input" required> </pre>
                 
                 </div>
                 <div class="field">
