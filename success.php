@@ -3,15 +3,11 @@
 session_start();
 
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><title></title></head>
 <body>
-    Success!
+    <h1 style="text-align center; horiz-align: center"><strong>Success!</strong></h1>
     
 </body>
 </html>

@@ -102,7 +102,7 @@ if (isset($_POST['airplane'])){
 		}
 	}
 	if($pass){
-		header( "refresh:3;url=Stage3_Verification.php" );
+		header("refresh:0;url=Stage3_Verification.php");
 	}else{
 		//check counter first.  
         $getLock = mysqli_fetch_assoc(mysqli_query($conn, "SELECT lockNum FROM group9_db WHERE userName = '$username'"));
