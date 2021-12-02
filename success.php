@@ -7,7 +7,7 @@ session_start();
 <html lang="en">
 <head><title></title></head>
 <body>
-    <h1 style="margin-left: 50%; margin-top: 50%;"><strong>Success!</strong></h1>
+    <h1 style="text-align:center;"><strong>Success!</strong></h1>
     
 </body>
 </html>
