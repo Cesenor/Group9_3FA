@@ -86,7 +86,7 @@ session_start();
         $getRGB = $getRGB['rgb'];
         //echo $getRGB;
 
-        $isAdmin = mysqli_fetch_assoc(mysqli_query($link, "SELECT isAdmin FROM group9_db WHERE userName = '$first_name'"));
+        //$isAdmin = mysqli_fetch_assoc(mysqli_query($link, "SELECT isAdmin FROM group9_db WHERE userName = '$first_name'"));
         //verify rgb.
         if($getRGB == $rgb) {
             // If the password inputs matched the hashed password in the database
@@ -102,7 +102,11 @@ session_start();
             if(mysqli_query($link, $sql)){
                 #echo "Contact Request added successfully.";
             }
-            if($isAdmin == true) {
+
+            $isAdmin = mysqli_fetch_assoc(mysqli_query($link, "SELECT isAdmin FROM group9_db WHERE userName = '$first_name'"));
+            $admin = $isAdmin['isAdmin'];
+
+            if($admin == 1) {
                 echo "true";
                 header("Location: admin_user.php");
                 exit();
