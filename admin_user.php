@@ -36,7 +36,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-    <title>AAdmin User</title>
+    <title>Admin User</title>
   </head>
   <style>
     html,
@@ -77,10 +77,10 @@
       <a class="navbar-brand" href="#">Secure Login Service</a>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="Stage1_Verification.html"
+          <a class="nav-item nav-link active" href="Stage1_Verification.php"
             >Login <span class="sr-only">(current)</span></a
           >
-          <a class="nav-item nav-link" href="registration1.html">Registration</a>
+          <a class="nav-item nav-link" href="registration1.php">Registration</a>
         </div>
       </div>
       <button
