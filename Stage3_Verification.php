@@ -107,11 +107,7 @@ foreach ($keys as $key){
                             createCookie("gfg", rgb_value, "10");
                             });
                         }
-                    };
-                // Creating a cookie after the document is ready
-                //$(document).ready(function () {
-                  //  createCookie("gfg", rgb_value, "10");
-                //});
+                    }
                 
                 // Function to create the cookie
                 function createCookie(name, value, days) {
@@ -125,16 +121,9 @@ foreach ($keys as $key){
                     else {
                         expires = "";
                     }
-                    
                     document.cookie = escape(name) + "=" + 
                         escape(value) + expires + "; path=/";
                 }
-  
-
-                ///////////////////////
-
-
-
                    </script>
                     
             </div>
