@@ -34,7 +34,6 @@ $username = $_SESSION['name'];
 //echo $userName;
 //$username = "Cesenor";
 
-
 $getLock = mysqli_fetch_assoc(mysqli_query($conn, "SELECT lockNum FROM group9_db WHERE userName = '$username'"));
         $lockNum = $getLock['lockNum'];
         #echo $lockNum;
@@ -138,7 +137,7 @@ if (isset($_POST['airplane'])){
 		
 	}
 }else{
-	echo "not post";
+	//echo "not post";
 }
 
 
@@ -194,8 +193,8 @@ foreach ($random_class_order as $index){
         <a class="navbar-brand" href="#">Secure Login Service</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="Stage1_Verification.html">Login <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="registration1.html">Registration</a>
+                <a class="nav-item nav-link active" href="Stage1_Verification.php">Login <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="registration1.php">Registration</a>
             </div>
         </div>
     </nav>

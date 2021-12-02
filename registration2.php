@@ -28,8 +28,8 @@ $_SESSION['pass'] = $_POST['userPassword'];
             <a class="navbar-brand" href="#">Secure Login Service</a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="Stage1_Verification.html">Login</a>
-                    <a class="nav-item nav-link active" href="registration1.html">Registration<span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="Stage1_Verification.php">Login</a>
+                    <a class="nav-item nav-link active" href="registration1.php">Registration<span class="sr-only">(current)</span></a>
                 </div>
             </div>
         </nav>
