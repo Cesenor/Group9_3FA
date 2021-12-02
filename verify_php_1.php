@@ -12,6 +12,8 @@ function myFunctionLock() {
   alert("Max Incorrect Password Attempt Reached.");
 }
 
+
+
 </script>
 
 
@@ -129,7 +131,11 @@ session_start();
 
 
     } else {
-        echo "Username not stored within database.";
+        echo '<script type="text/javascript">myFunction();</script>';
+        echo "Redirecting in 3 seconds.";
+        #maybe make this dynamic. 
+        header( "refresh:3;url=Stage1_Verification.php" );
+        exit();
     }
 
    
